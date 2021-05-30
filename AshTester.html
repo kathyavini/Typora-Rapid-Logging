@@ -1,0 +1,129 @@
+<html>
+<head>
+<style>
+
+html {
+	font-family: 'Questrial', sans-serif;
+	font-size: 25px;
+}
+
+html, body {
+    background-color: white;
+    color: black;
+}
+
+li {
+  list-style-type: none;
+}
+
+/* it's definitely the checkboxes
+themselves being adjusted here.
+For me the positioning changes nothing*/
+.task-list-item input {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: block;
+    appearance: initial;
+    top: -2px;
+    left: -18px;
+}
+
+/* Not sure of purpose here either*/
+.task-list-item input:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+/* These are same color as the background.
+So basically the empty circles. Transition
+seems to add some smoothness when unchecking */
+.task-list-item input:before{
+    border: 1px solid #d4d4d4;
+    border-radius: 1.2rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    background: #666;
+    content: ' ';
+    transition: background-color 200ms ease-in-out;
+    display: block;
+}
+
+.task-list-item input:checked:before,
+.task-list-item input[checked]:before {
+    background: #d4d4d4;
+    border-width: 2px;
+    display:inline-block;
+    transition: background-color 200ms ease-in-out;
+}
+
+.task-list-item input:checked:after,
+.task-list-item input[checked]:after {
+    opacity: 1;
+}
+
+.task-list-item input:after {
+    opacity: 1;
+    transition: opacity 0.05s ease-in-out;
+    transform: rotate(-45deg) translate(-0.9rem, -.5rem);
+    position: absolute;
+    width: 0.6375rem;
+    height: 0.4rem;
+    border: 3px solid #666;
+    border-top: 0;
+    border-right: 0;
+    content: ' ';
+    opacity: 0;
+}
+
+
+.task-list-done {
+    text-decoration: line-through;
+    color: #d4d4d4;
+}
+
+</style>
+</head>
+
+
+
+
+<body>
+<ul class="ul-list" cid="n134" mdtype="list" data-mark="-">
+    <li class="md-list-item task-list-item  md-task-list-item task-list-done " cid="n135" mdtype="list_item" contenteditable="false">
+        <input type="checkbox" checked="">
+        <p cid="n136" mdtype="paragraph" contenteditable="true" class="md-end-block md-p">
+            <span md-inline="plain" class="md-plain">Finish FreeCodeCamp on CSS drawing - AFTER THREE MONTHS!!!</span>
+        </p>
+    </li>
+    <li class="md-list-item task-list-item md-task-list-item task-list-done md-focus-container" cid="n137" mdtype="list_item" contenteditable="true">
+        <input type="checkbox" checked="">
+        <p cid="n138" mdtype="paragraph" contenteditable="true" class="md-end-block md-p md-focus"><span md-inline="plain" class="md-plain md-expand">Do the section on inspectors which I could have tackled a LONG time ago</span>
+        </p>
+    </li>
+    <li class="md-list-item task-list-item md-task-list-item task-list-done" cid="n139" mdtype="list_item" contenteditable="false">
+        <input type="checkbox" checked="checked">
+        <p cid="n140" mdtype="paragraph" contenteditable="true" class="md-end-block md-p">
+            <span md-inline="plain" class="md-plain">See what is being used in my favourite Typora Themes</span>
+        </p>
+    </li>
+    <li class="md-list-item task-list-item md-task-list-item task-list-not-done" cid="n141" mdtype="list_item" contenteditable="false">
+        <input type="checkbox">
+        <p cid="n142" mdtype="paragraph" contenteditable="true" class="md-end-block md-p">
+            <span md-inline="plain" class="md-plain">Play around with vue.user.css; see what can be done </span>
+        </p>
+    </li>
+    <li class="md-list-item task-list-item  md-task-list-item task-list-not-done " cid="n143" mdtype="list_item" contenteditable="false">
+        <input type="checkbox">
+        <p cid="n144" mdtype="paragraph" contenteditable="true" class="md-end-block md-p">
+            <span md-inline="plain" class="md-plain">Which of course is going to go a lot better with the inspectors -- and probably on the Pi where I can really put things side by side</span>
+        </p>
+    </li>
+    <li class="md-list-item task-list-item  md-task-list-item task-list-not-done " cid="n145" mdtype="list_item" contenteditable="false">
+        <input type="checkbox">
+        <p cid="n146" mdtype="paragraph" contenteditable="true" class="md-end-block md-p">
+            <span md-inline="plain" class="md-plain">Drop in to Discord... anyone else from my cohort struggling right now? :)</span>
+        </p>
+    </li>
+</ul>
+</body>
+</html>
