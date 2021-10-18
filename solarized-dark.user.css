@@ -1,0 +1,216 @@
+/* ---------- COLORS ---------- */
+/* Color of the rapid logging marks, completed task text (which is also the color of the hover animation for checkboxes), and normal text. I prefer the marks matching the text but if you like contrast you could match them to anything. Pull these from your theme of choice. */
+
+/* As reference, here are a few of my favorites:
+	Vue Light: #34495e, #42b983, #34495e
+	Vue Dark: #eeeeee, #42b983, #eeeeee
+	Mint: #333333, #adadad, #333333
+	Mint Dark: #cccccc, #4eb289, #cccccc
+	Solarized: #586e75, #b58900, #586e75
+	Solarized Dark: #93a1a1, #6c71c4, #93a1a1
+	Lavender: #675473, #c18cf0, #675473
+*/
+:root {
+    --rapid-log-color: #93a1a1;
+    --strikethrough-color: #6c71c4;
+    --unstyled-text-color: #93a1a1;
+}
+
+/* -------- THICKNESS -------- */
+/* Some themes (lavender, mint) look better with 1px borders and some (vue, Solarized) look better with 2px borders */
+:root {
+    --rapid-log-border-width: 2px;
+}
+
+/* ------ "X" Mark Offset ------ */
+/* Unfortunately the necessary offset varies from theme to theme. Some working values on my system:
+    Newsprint, Lavender: -0.3rem
+    Mint, Mint Dark, Vue Dark: -.23rem
+	Vue, Night: -0.15rem;
+	Solarized, Solarized Dark: -.1rem;
+*/
+:root {
+    --x-mark-y-offset: -0.1rem;
+}
+
+/* ---- Correcting for wonky themes ---- */
+/* Solarized looks pretty off on my Mac running Mojave - the check marks don't line up at all with the tasks. Feel free to play with these values to adjust the rapid logging symbols to other themes and fonts with strange spacing.
+	Solarized (Light and Dark): -.6rem, -.25rem
+	Everything else: 0rem, 0rem; (** Include the rem!! **)
+*/
+:root {
+    --solarized-x-offset: -.6rem;
+    --solarized-y-offset: -.25rem;
+}
+
+/* ----- COMPLETED TASK STYLES ------- */
+/* Strike-through animation and effect for completed tasks. Strictly speaking this is not Bullet Journal style; feel free to comment out */
+
+#write .md-task-list-item.task-list-done > p {
+    color: var(--strikethrough-color);
+    text-decoration: line-through;
+}
+#write .md-task-list-item > p {
+    transition: color 0.3s;
+}
+
+/* Reset of the default strike-through effect is needed for some themes e.g. mint */
+.task-list-done {
+    text-decoration: none;
+    color: var(--unstyled-text-color);
+}
+
+
+/* ---------- NOTES AND EVENTS ---------- */
+  
+/* Adjust margins */
+#write ul {
+    padding-left: 2rem;
+    margin: .5rem 0;
+}
+  
+#write ul > li > *:not(ol):not(ul) {
+    padding-left: .25rem;
+}
+
+/* Get rid of default bullets */
+#write ul li {
+    list-style-type: none;
+}
+
+/* Note -- (dash) mark */
+#write ul[data-mark="-"] > li::before {
+    content: "";
+    position: absolute;
+    height: var(--rapid-log-border-width);
+    width: .8rem;
+    background-color: var(--rapid-log-color);
+    margin: .7rem -1.1rem;
+    border: solid var(--rapid-log-color) 1px;
+    border-radius: 0;
+    transform: rotate(0deg);
+}
+
+/* Event circle mark */
+#write ul[data-mark="*"] > li::before {
+    content: "";
+    position: absolute;
+    height: .75rem;
+    width: .75rem;
+    background-color: transparent;
+    margin: 0.4rem -1.1rem;
+    border: solid var(--rapid-log-color) var(--rapid-log-border-width);
+    border-radius: 50%;
+    transform: rotate(0deg);
+}
+
+
+/* ----------- TASK ITEMS ---------- */
+
+/* Hide inherited dash marks */
+#write ul > .md-task-list-item::before {
+    opacity: 0;
+}
+
+/* The hover animation for task checkboxes, mostly modeled after Ursine */
+#write .md-task-list-item > input {
+    -webkit-appearance: initial;
+    display: block;
+    position: absolute;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    /* margin: .15rem -1.3rem; */
+    margin: calc(.15rem + var(--solarized-y-offset)) calc(-1.3rem + var(--solarized-x-offset));
+    height: 1.2rem;
+    width: 1.2rem;
+    transition: background 0.3s;
+} 
+  
+#write .md-task-list-item > input:hover {
+    background: radial-gradient(var(--strikethrough-color), transparent);
+}
+  
+      
+/* The task dot */
+#write .md-task-list-item > input::before {
+    content: "";
+    position: absolute;
+    height: .4rem;
+    width: .4rem;
+    margin: .4rem .15rem;
+/*     margin: calc(.35rem + var(--solarized-y-offset)) calc(.15rem + var(--solarized-x-offset)); */
+    border-radius: 50%;
+    background: var(--rapid-log-color);
+    border: none;
+}
+    
+/* The x for a completed task */
+#write .md-task-list-item > input[checked]::after {
+    content: "\2715";
+    color: var(--rapid-log-color);
+    position: absolute;
+    font-size: 1.2rem;
+    margin: var(--x-mark-y-offset) -.1rem;
+    height: 2rem;
+    width: 2rem;
+    border: none;
+    border-width: 0 0 0 0;
+    transform: rotate(0deg);
+}
+
+
+
+/* ------- Task forwarding and scheduling --- */
+
+/* If you prefer to keep nested task bullets (checkboxes) instead, comment out all CSS below */
+
+/* The following CSS: 
+
+1. Gets rid of indentation nesting.
+2. For second order tasks, the dot becomes a > whether or not checked
+3. If second order and checked, it becomes a < symbol instead of x-ed out
+4. And un-style the text for indented items including any inherited completion 
+5. Hide the > symbol for scheduled tasks */
+
+/*------COMMENT OUT BELOW ------ */
+
+#write ul > li .md-task-list-item {
+    transform: translate(-2rem); 
+}
+
+#write ul > li .md-task-list-item > input::before {
+    content: "";
+    position: absolute;
+    height: .75rem;
+    width: .75rem;
+    margin: .25rem -.3rem;
+/*     margin: calc(.25rem + var(--solarized-y-offset)) calc(-.3rem + var(--solarized-x-offset)); */
+    border: solid var(--rapid-log-color);
+    border-radius: 0;
+    background: none;
+    border-width: 0 0 var(--rapid-log-border-width) var(--rapid-log-border-width);
+    transform: rotate(225deg); 
+}
+
+#write ul li .md-task-list-item > input[checked]::after {
+    content: "";
+    position: absolute;
+    height: .75rem;
+    width: .75rem;
+    margin: .3rem -.05rem;
+/*     margin: calc(.3rem + var(--solarized-y-offset)) calc(-.05rem + var(--solarized-x-offset)); */
+    border: solid var(--rapid-log-color);
+    border-width: 0 0 var(--rapid-log-border-width) var(--rapid-log-border-width);
+    transform: rotate(45deg);
+}
+
+#write ul li .md-task-list-item.task-list-done > p,
+#write ul li .md-task-list-item > p {
+    color: var(--unstyled-text-color);
+    text-decoration: none;
+}
+
+#write ul > li .md-task-list-item > input[checked]::before {
+    opacity: 0;
+}
