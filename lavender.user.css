@@ -17,9 +17,10 @@
 }
 
 /* -------- THICKNESS -------- */
-/* Some themes (lavender, mint) look better with 1px borders and some (vue, Solarized) look better with 2px borders */
+/* Some themes (lavender mint) look better with 1px borders and some (vue, Solarized) look better with 2px borders. If you want the longform mark to match, adjust the font-weight to bold. Otherwise normal.*/
 :root {
     --rapid-log-border-width: 1px;
+    --longform-mark-font-weight: normal;
 }
 
 /* ------ "X" Mark Offset ------ */
@@ -104,6 +105,21 @@
     transform: rotate(0deg);
 }
 
+/* Longform + mark */
+#write ul[data-mark="+"] > li::before {
+    content: "\2715";
+    color: var(--rapid-log-color);
+    position: absolute;
+    font-weight: var(--longform-mark-font-weight);
+    font-size: .9rem;
+    margin: .2rem -.9rem;
+    height: .8rem;
+    width: .8rem;
+    border: none;
+    border-width: 0 0 0 0;
+    transform: rotate(45deg);
+}
+
 
 /* ----------- TASK ITEMS ---------- */
 
@@ -120,7 +136,6 @@
     border: none;
     background: transparent;
     border-radius: 50%;
-    /* margin: .15rem -1.3rem; */
     margin: calc(.15rem + var(--solarized-y-offset)) calc(-1.3rem + var(--solarized-x-offset));
     height: 1.2rem;
     width: 1.2rem;
@@ -139,7 +154,6 @@
     height: .4rem;
     width: .4rem;
     margin: .4rem .15rem;
-/*     margin: calc(.35rem + var(--solarized-y-offset)) calc(.15rem + var(--solarized-x-offset)); */
     border-radius: 50%;
     background: var(--rapid-log-color);
     border: none;
