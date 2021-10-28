@@ -72,7 +72,7 @@ Luckily in Typora the original bullet type is kept in the "data-mark" attribute 
 
 Data-marks can't be used to give extra styling to tasks (the forwarding/scheduling of rapid logging), because all tasks have the standard markdown format `-[x]`. In any case I didn't want to adopt a method that would generate a task list unrecognizable to other markdown editors.
   
-  Therefore I picked tab indent as the easiest way to modify a task to schedule/forward it. It's not a perfect solution because subtasks are also very useful. As described below in [Subtasks/Task Nesting](#subtasks-vs.-forwarding/scheduling-task-bullets), feel free to turn off the forwarding/scheduling indent in order to use subtasks.
+  Therefore I picked tab indent as the easiest way to modify a task to schedule/forward it. It's not a perfect solution because subtasks are also very useful. As described below in [Subtasks/Task Nesting](#subtasks-vs-forwardingscheduling-task-bullets), feel free to turn off the forwarding/scheduling indent in order to use subtasks.
 
 ### Result
 Put together, Typora Rapid Logging takes this unstyled markdown:
