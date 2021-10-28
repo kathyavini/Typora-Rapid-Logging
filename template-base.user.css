@@ -26,8 +26,8 @@
 /* ------ "X" Mark Offset ------ */
 /* Unfortunately the necessary offset varies from theme to theme. Some working values on my system:
     Newsprint, Lavender: -0.3rem
-    Mint, Mint Dark, Vue Dark: -.23rem
-	Vue, Night: -0.15rem;
+    Mint, Mint Dark: -.23rem
+	Vue, Night, Vue Dark: -0.15rem;
 	Solarized, Solarized Dark: -.05rem;
 */
 :root {
